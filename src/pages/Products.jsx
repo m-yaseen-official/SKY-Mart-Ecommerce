@@ -3,9 +3,11 @@ import { Auth } from '../context/AuthContext'
 import ProductCard from '../components/Products/ProductCard'
 import { FiSearch } from 'react-icons/fi'
 import { IoChevronDownOutline } from 'react-icons/io5'
+import { useParams } from 'react-router'
 
 const Products = () => {
-
+  const {category} = useParams();
+  console.log(category);
 const {products} = useContext(Auth)
 console.log(products);
   return (

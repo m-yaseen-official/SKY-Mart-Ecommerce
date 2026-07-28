@@ -59,6 +59,7 @@ getCategoriesData();
       loggedInUser,
       setLoggedInUser,
       categories,
+      getProductData
       }}>
       {children}
     </Auth.Provider>

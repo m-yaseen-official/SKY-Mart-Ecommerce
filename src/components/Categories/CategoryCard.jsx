@@ -14,6 +14,7 @@ import {
   FaCar,
   FaMotorcycle,
 } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const icons = {
   beauty: <FaHeartbeat />,
@@ -39,9 +40,10 @@ const icons = {
 };
 const CategoryCard = ({ categoryItem }) => {
   const icon = icons[categoryItem.slug] || <FaShoppingBag />;
-
+  const navigate = useNavigate();
   return (
     <motion.div
+    onClick={()=> navigate(`/products/${categoryItem.slug}`)}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -8, scale: 1.03 }}
@@ -49,7 +51,7 @@ const CategoryCard = ({ categoryItem }) => {
       viewport={{ once: true }}
       className="group cursor-pointer rounded-3xl border border-zinc-700 bg-[#111111] p-6 transition-all duration-300 hover:border-lime-400"
     >
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center border boreder">
         {/* Icon */}
         <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-zinc-700 bg-zinc-900 text-4xl text-lime-400 transition-all duration-300 group-hover:bg-lime-400 group-hover:text-black">
           {icon}

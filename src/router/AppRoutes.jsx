@@ -51,6 +51,10 @@ const AppRoutes = () => {
           path:"products",
           element:<Products />
         },
+          {
+      path:"products/:category",
+      element:<Products />
+    },
         {
           path:"about",
           element:<About />
