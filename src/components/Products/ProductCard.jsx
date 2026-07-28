@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
       whileHover={{ y: -8 }}
       transition={{ duration: 0.35 }}
       viewport={{ once: true }}
-      className="group w-full max-w-[360px] overflow-hidden rounded-3xl border border-zinc-800 bg-[#111111] shadow-lg duration-300 hover:border-lime-500"
+      className="group w-full max-w-90 overflow-hidden rounded-3xl border border-zinc-800 bg-[#111111] shadow-lg duration-300 hover:border-lime-500"
     >
       {/* Image */}
       <div className="relative bg-white p-6">

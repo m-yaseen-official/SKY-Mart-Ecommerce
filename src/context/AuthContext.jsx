@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const Auth = createContext();
 
@@ -18,7 +18,6 @@ const AuthProvider = ({children})=>{
 
   const [categories, setCategories] = useState([]);
 
-
 const getProductData = async () => {
   try {
     const res = await axios.get("https://dummyjson.com/products");
@@ -28,6 +27,11 @@ const getProductData = async () => {
   }
 }
 
+const getProductsByCategory = async (category)=>{
+  console.log(category);
+  const res = await axios.get(`https://dummyjson.com/products/category/${category}`)
+  setProducts(res.data.products);
+}
 const getCategoriesData = async () => {
   try {
     const res = await axios.get("https://dummyjson.com/products/categories");
@@ -39,10 +43,6 @@ const getCategoriesData = async () => {
 
 
 
-useEffect(()=>{
-getProductData();
-getCategoriesData();
-},[])
 
 
 
@@ -59,7 +59,9 @@ getCategoriesData();
       loggedInUser,
       setLoggedInUser,
       categories,
-      getProductData
+      getProductData,
+      getCategoriesData,
+      getProductsByCategory,
       }}>
       {children}
     </Auth.Provider>

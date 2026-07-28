@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import App from '../App'
 import AuthLayout from '../layouts/AuthLayout'
@@ -6,8 +6,8 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import MainLayout from '../layouts/MainLayout'
-import Products from '../pages/Products'
-import About from '../pages/About'
+let About = lazy(() => import("../pages/About"));
+let Products = lazy(() => import("../pages/Products"));
 import ProtectedRoute from './ProtectedRoute'
 import PublicRoute from './PublicRoute'
 
@@ -52,7 +52,7 @@ const AppRoutes = () => {
           element:<Products />
         },
           {
-      path:"products/:category",
+      path:"products/category/:category",
       element:<Products />
     },
         {

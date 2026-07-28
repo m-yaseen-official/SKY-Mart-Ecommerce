@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { motion } from "framer-motion";
 import {
   FaLaptop,
@@ -16,40 +16,13 @@ import { Auth } from '../../context/AuthContext';
 
 const Categories = () => {
 
-  const navigate = useNavigate();
-  const {categories} = useContext(Auth)
-//   const categoryData = [
-//   {
-//     title: "Electronics",
-//     products: 25,
-//     icon: <FaLaptop />,
-//   },
-//   {
-//     title: "Fashion",
-//     products: 18,
-//     icon: <FaTshirt />,
-//   },
-//   {
-//     title: "Jewelry",
-//     products: 12,
-//     icon: <FaGem />,
-//   },
-//   {
-//     title: "Furniture",
-//     products: 10,
-//     icon: <FaCouch />,
-//   },
-//   {
-//     title: "Mobiles",
-//     products: 30,
-//     icon: <FaMobileAlt />,
-//   },
-//   {
-//     title: "Gaming",
-//     products: 16,
-//     icon: <FaGamepad />,
-//   },
-// ];
+  const navigate = useNavigate();;
+  const {categories, getCategoriesData } = useContext(Auth)
+
+  useEffect(()=>{
+getCategoriesData();
+},[])
+
   return (
     <section className="px-5 lg:px-10 py-14">
       {/* Heading */}

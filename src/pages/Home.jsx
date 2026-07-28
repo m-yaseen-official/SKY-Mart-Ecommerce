@@ -1,8 +1,8 @@
+import { lazy } from "react";
 import  Features  from "../components/Features/Features";
-import Categories from "../components/Categories/Categories";
 import Hero from "../components/Hero/Hero";
 import Navbar from "../components/Navbar/Navbar";
-
+let  Categories = lazy(() => import("../components/Categories/Categories"));
 import Footer from "../components/Footer/Footer";
 import Stats from "../components/Stats/Stats";
 

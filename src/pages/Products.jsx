@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Auth } from '../context/AuthContext'
 import ProductCard from '../components/Products/ProductCard'
 import { FiSearch } from 'react-icons/fi'
@@ -6,10 +6,18 @@ import { IoChevronDownOutline } from 'react-icons/io5'
 import { useParams } from 'react-router'
 
 const Products = () => {
-  const {category} = useParams();
-  console.log(category);
-const {products} = useContext(Auth)
-console.log(products);
+const {products , getProductData, getProductsByCategory} = useContext(Auth);
+const {category} = useParams()
+
+
+useEffect(()=>{
+  if(!category){
+    getProductData();
+    return
+  }
+  getProductsByCategory(category)
+},[category])
+
   return (
     <div className='mx-auto w-full max-w-7xl border px-10 flex flex-col gap-7 mt-5'>
   <div className='flex flex-col gap-1'>
