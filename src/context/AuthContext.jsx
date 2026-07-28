@@ -16,18 +16,32 @@ const AuthProvider = ({children})=>{
 
   const [products, setProducts] = useState([]);
 
+  const [categories, setCategories] = useState([]);
+
 
 const getProductData = async () => {
   try {
-    const res = await axios.get("https://fakestoreapi.com/products");
-    setProducts(res.data)
+    const res = await axios.get("https://dummyjson.com/products");
+    setProducts(res.data.products)
   } catch (error) {
     console.log("errors in api->", error);
   }
 }
 
+const getCategoriesData = async () => {
+  try {
+    const res = await axios.get("https://dummyjson.com/products/categories");
+    setCategories(res.data)
+  } catch (error) {
+    console.log("errors in api->", error);
+  }
+}
+
+
+
 useEffect(()=>{
 getProductData();
+getCategoriesData();
 },[])
 
 
@@ -44,6 +58,7 @@ getProductData();
       setregisterUser,
       loggedInUser,
       setLoggedInUser,
+      categories,
       }}>
       {children}
     </Auth.Provider>

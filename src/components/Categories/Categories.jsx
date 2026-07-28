@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { motion } from "framer-motion";
 import {
   FaLaptop,
@@ -11,43 +11,45 @@ import {
 } from "react-icons/fa";
 import CategoryCard from './CategoryCard';
 import { useNavigate } from 'react-router';
+import { Auth } from '../../context/AuthContext';
 
 
 const Categories = () => {
 
   const navigate = useNavigate();
-  const categoryData = [
-  {
-    title: "Electronics",
-    products: 25,
-    icon: <FaLaptop />,
-  },
-  {
-    title: "Fashion",
-    products: 18,
-    icon: <FaTshirt />,
-  },
-  {
-    title: "Jewelry",
-    products: 12,
-    icon: <FaGem />,
-  },
-  {
-    title: "Furniture",
-    products: 10,
-    icon: <FaCouch />,
-  },
-  {
-    title: "Mobiles",
-    products: 30,
-    icon: <FaMobileAlt />,
-  },
-  {
-    title: "Gaming",
-    products: 16,
-    icon: <FaGamepad />,
-  },
-];
+  const {categories} = useContext(Auth)
+//   const categoryData = [
+//   {
+//     title: "Electronics",
+//     products: 25,
+//     icon: <FaLaptop />,
+//   },
+//   {
+//     title: "Fashion",
+//     products: 18,
+//     icon: <FaTshirt />,
+//   },
+//   {
+//     title: "Jewelry",
+//     products: 12,
+//     icon: <FaGem />,
+//   },
+//   {
+//     title: "Furniture",
+//     products: 10,
+//     icon: <FaCouch />,
+//   },
+//   {
+//     title: "Mobiles",
+//     products: 30,
+//     icon: <FaMobileAlt />,
+//   },
+//   {
+//     title: "Gaming",
+//     products: 16,
+//     icon: <FaGamepad />,
+//   },
+// ];
   return (
     <section className="px-5 lg:px-10 py-14">
       {/* Heading */}
@@ -72,8 +74,8 @@ const Categories = () => {
       {/* Cards */}
 
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
-        {categoryData.map((item, index) => (
-          <CategoryCard key={index} {...item} />
+        {categories.slice(0,6).map((item, index) => (
+          <CategoryCard key={index} categoryItem={item} />
         ))}
       </div>
     </section>

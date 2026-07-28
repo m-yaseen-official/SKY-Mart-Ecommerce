@@ -2,11 +2,12 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { Auth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 const Hero = () => {
+  
+  const navigate = useNavigate()
   const {loggedInUser} = useContext(Auth)
-
-
   const fullName = loggedInUser.name
   
 
@@ -41,6 +42,7 @@ const Hero = () => {
 
             <div className="flex flex-wrap gap-4 mt-6">
               <motion.button
+              onClick={()=> navigate("/products") }
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-lime-400 text-black font-medium px-4 py-0 rounded-xl flex items-center gap-3"
@@ -50,6 +52,7 @@ const Hero = () => {
               </motion.button>
 
               <motion.button
+              onClick={()=> navigate("/products") }
                 whileHover={{ scale: 1.05 }}
                 className="border border-zinc-600 px-8 py-4 rounded-xl hover:border-lime-400 transition"
               >

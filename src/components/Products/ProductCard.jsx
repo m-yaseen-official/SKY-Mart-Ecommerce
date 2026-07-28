@@ -1,85 +1,110 @@
-import React from 'react'
+import React from "react";
 import { motion } from "framer-motion";
-import {  FaCheck , FaShoppingCart, FaStar } from "react-icons/fa";
+import {
+  FaShoppingCart,
+  FaStar,
+  FaCheckCircle,
+  FaTimesCircle,
+} from "react-icons/fa";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product }) => {
+  const discountedPrice = (
+    product.price -
+    (product.price * product.discountPercentage) / 100
+  ).toFixed(2);
+
   return (
-   <motion.div
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.35 }}
       viewport={{ once: true }}
-      className="group w-full max-w-75 min-h-100 rounded-3xl border border-lime-500/50 bg-[#111111] overflow-hidden   hover:shadow-[0_10px_30px_rgba(163,230,53,0.15)]"
+      className="group w-full max-w-[360px] overflow-hidden rounded-3xl border border-zinc-800 bg-[#111111] shadow-lg duration-300 hover:border-lime-500"
     >
+      {/* Image */}
+      <div className="relative bg-white p-6">
+        {/* Discount */}
+        <span className="absolute left-4 top-4 rounded-full bg-red-500 px-3 py-1 text-xs font-semibold text-white">
+          -{product.discountPercentage.toFixed(0)}%
+        </span>
 
-      {/* Image Section */}
-      <div className="relative bg-white p-4">
-
-        {/* Category Badge */}
-        <span className="absolute top-3 left-3 rounded-full bg-gray-500 px-3 py-1 text-xs font-medium text-white capitalize">
+        {/* Category */}
+        <span className="absolute right-4 top-4 rounded-full bg-zinc-800 px-3 py-1 text-xs capitalize text-white">
           {product.category}
         </span>
 
         <img
-          src={product.image}
+          src={product.thumbnail}
           alt={product.title}
-          className="h-50 w-100 object-contain"
+          className="mx-auto h-52 object-contain transition duration-300 group-hover:scale-105"
         />
       </div>
 
       {/* Content */}
-      <div className="space-y-3 p-5">
+      <div className="space-y-4 p-5">
+        {/* Brand */}
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-medium uppercase tracking-widest text-lime-400">
+            {product.brand}
+          </p>
 
-        {/* Category */}
-        <p className="text-xs text-gray-500 capitalize">
-          {product.category}
-        </p>
+          <div className="flex items-center gap-1 text-yellow-400">
+            <FaStar />
+            <span className="text-sm text-white">
+              {product.rating}
+            </span>
+          </div>
+        </div>
 
         {/* Title */}
-        <h2 className="line-clamp-2 text-lg font-bold leading-8 text-white">
+        <h2 className="line-clamp-2 text-xl font-bold text-white">
           {product.title}
         </h2>
 
-        {/* Rating */}
-        <div className="flex items-center gap-1">
-          {[...Array(5)].map((_, index) => (
-            <FaStar
-              key={index}
-              className={`text-sm ${
-                index < Math.round(product.rating.rate)
-                  ? "text-yellow-400"
-                  : "text-gray-600"
-              }`}
-            />
-          ))}
+        {/* Description */}
+        <p className="line-clamp-2 text-sm leading-6 text-gray-400">
+          {product.description}
+        </p>
 
-          <span className="ml-2 text-sm text-gray-500">
-            ({product.rating.count})
+        {/* Stock */}
+        <div className="flex items-center justify-between text-sm">
+          {product.stock > 0 ? (
+            <div className="flex items-center gap-2 text-green-400">
+              <FaCheckCircle />
+              <span>{product.stock} In Stock</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2 text-red-400">
+              <FaTimesCircle />
+              <span>Out of Stock</span>
+            </div>
+          )}
+
+          <span className="text-gray-500">
+            SKU: {product.sku}
           </span>
         </div>
 
-        <hr className="border-gray-700" />
-
-        {/* Price & Button */}
-        <div className="flex items-center justify-between">
-
-          <h3 className="text-4xl font-bold text-lime-400">
-            ${product.price}
+        {/* Price */}
+        <div className="flex items-end gap-3">
+          <h3 className="text-3xl font-bold text-lime-400">
+            ${discountedPrice}
           </h3>
 
-          <button className="flex items-center gap-2 rounded-xl border border-green-600 bg-green-900/30 px-5 py-3 font-medium text-green-400 transition hover:bg-green-700 hover:text-white">
-            <FaCheck />
-            Add
-          </button>
-
+          <span className="text-lg text-gray-500 line-through">
+            ${product.price}
+          </span>
         </div>
+
+        {/* Button */}
+        <button className="flex w-full items-center justify-center gap-3 rounded-2xl bg-lime-500 py-3 font-semibold text-black transition hover:bg-lime-400">
+          <FaShoppingCart />
+          Add To Cart
+        </button>
       </div>
-
-
     </motion.div>
-  
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

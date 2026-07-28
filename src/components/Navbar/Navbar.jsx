@@ -35,21 +35,22 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center font-semibold text-gray-500 text-sm gap-10 font-dm">
           <NavLink
             to={"/home"}
-            className="text-lime-400 cursor-pointer transition "
+            className={({isActive})=> isActive ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 cursor-pointer transition" } 
+            end
           >
             Home
           </NavLink>
 
           <NavLink
             to={"/products"}
-            className="hover:text-lime-400 cursor-pointer transition"
+            className={({isActive})=> isActive ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 cursor-pointer transition" }
           >
             Shop
           </NavLink>
 
           <NavLink
             to={"/about"}
-            className="hover:text-lime-400 cursor-pointer transition"
+            className={({isActive})=> isActive ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 cursor-pointer transition" }
           >
             About
           </NavLink>
@@ -108,13 +109,13 @@ const Navbar = () => {
           className="md:hidden bg-[#111]"
         >
           <ul className="flex flex-col p-5 items-center  gap-5">
-            <NavLink to={"/home"} className="border-b w-full text-center">
+            <NavLink to={"/home"} className={({isActive})=> isActive ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 w-full text-center cursor-pointer transition" } >
               Home
             </NavLink>
-            <NavLink to={"/products"} className="border-b w-full text-center">
+            <NavLink to={"/products"} className={({isActive})=> isActive ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 w-full text-center cursor-pointer transition" }>
               Shop
             </NavLink>
-            <NavLink to={"/about"} className="border-b w-full text-center">
+            <NavLink to={"/about"} className={({isActive})=> isActive ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 w-full text-center cursor-pointer transition" }>
               About
             </NavLink>
           </ul>
