@@ -8,6 +8,8 @@ import { Auth } from "../../context/AuthContext";
 const Navbar = () => {
   const { setIsCartOpen, open, setOpen } = useContext(Auth);
 
+  const {loggedInUser} = useContext(Auth)
+  const fullName = loggedInUser.name;
   return (
     <motion.nav
       initial={{ y: -80 }}
@@ -58,9 +60,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-4">
           <span className="flex gap-2 items-center bg-zinc-900 border border-zinc-700 px-3 py-2 rounded-xl transition">
             <span className="bg-lime-300 px-2 py-1text-sm text-black font-semibold rounded-lg">
-              Z
+              {fullName[0]}
             </span>
-            <span className="text-sm text-gray-300">zunii</span>
+            <span className="text-sm text-gray-300">{fullName}</span>
           </span>
 
           <button
@@ -123,17 +125,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-{/* <div className="flex gap-5 items-center">
-              <div className="relative h-10 w-10 rounded-xl border border-zinc-700 flex justify-center items-center hover:border-lime-400">
-                <FaShoppingCart />
-
-                <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-lime-400 text-black text-xs flex justify-center items-center">
-                  4
-                </span>
-              </div>
-
-              <div className="relative h-10 w-10 rounded-xl border border-zinc-700 flex justify-center items-center hover:border-lime-400">
-                <LuLogOut />
-              </div>
-              </div> */}

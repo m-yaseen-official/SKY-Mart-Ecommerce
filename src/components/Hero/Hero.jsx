@@ -1,7 +1,15 @@
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { Auth } from "../../context/AuthContext";
 
 const Hero = () => {
+  const {loggedInUser} = useContext(Auth)
+
+
+  const fullName = loggedInUser.name
+  
+
   return (
     <section className="px-5 lg:px-10 mt-8">
       <motion.div
@@ -23,7 +31,7 @@ const Hero = () => {
             <h1 className="font-syne text-4xl md:text-5xl   font-bold ">
               Welcome back,
               <br />
-              <span className="text-lime-400">zunii!</span>
+              <span className="text-lime-400">{fullName}!</span>
             </h1>
 
             <p className="mt-3 text-zinc-400 max-w-xl leading-7">

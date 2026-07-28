@@ -5,12 +5,17 @@ const Auth = createContext();
 
 
 const AuthProvider = ({children})=>{
+
+  const [registeredUsers, setregisterUser] = useState(JSON.parse(localStorage.getItem("registerUser")) || [])
+
+  const [loggedInUser, setLoggedInUser] = useState(JSON.parse(localStorage.getItem("loggedInUser"))
+);
+
   const [open, setOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const [products, setProducts] = useState([]);
 
-  console.log(products);
 
 const getProductData = async () => {
   try {
@@ -28,7 +33,18 @@ getProductData();
 
 
   return (
-    <Auth.Provider value={{isCartOpen,setIsCartOpen,open, setOpen, products}}>
+    <Auth.Provider value={
+      {
+      isCartOpen,
+      setIsCartOpen,
+      open,
+      setOpen,
+      products,
+      registeredUsers,
+      setregisterUser,
+      loggedInUser,
+      setLoggedInUser,
+      }}>
       {children}
     </Auth.Provider>
   )

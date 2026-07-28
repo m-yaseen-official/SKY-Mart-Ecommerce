@@ -8,26 +8,39 @@ import Home from '../pages/Home'
 import MainLayout from '../layouts/MainLayout'
 import Products from '../pages/Products'
 import About from '../pages/About'
+import ProtectedRoute from './ProtectedRoute'
+import PublicRoute from './PublicRoute'
 
 const AppRoutes = () => {
 
   const router = createBrowserRouter([
     {
       path:"/",
-      element: <AuthLayout />,
+      element: <PublicRoute />,
       children:[
         {
+          path:"",
+          element:< AuthLayout />,
+          children:[
+            {
           path:"",
           element: <Login />
         },
         {
-          path:"/register",
+          path:"register",
           element:<Register />
         }
+          ]
+        }
+        
       ]
     },
     {
       path:"/",
+      element:<ProtectedRoute />,
+      children:[
+        {
+      path:"",
       element:<MainLayout />,
       children:[
         {
@@ -43,6 +56,7 @@ const AppRoutes = () => {
           element:<About />
         }
       ]
+    }]
     }
   ])
 
