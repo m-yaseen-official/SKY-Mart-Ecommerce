@@ -6,8 +6,11 @@ import {
   FaCheckCircle,
   FaTimesCircle,
 } from "react-icons/fa";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   const discountedPrice = (
     product.price -
     (product.price * product.discountPercentage) / 100
@@ -15,6 +18,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <motion.div
+      onClick={()=> navigate(`${product.id}`)}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -8 }}

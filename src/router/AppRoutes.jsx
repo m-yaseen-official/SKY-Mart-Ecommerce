@@ -1,70 +1,74 @@
-import React, { lazy } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router'
-import App from '../App'
-import AuthLayout from '../layouts/AuthLayout'
-import Login from '../pages/Login'
-import Register from '../pages/Register'
-import Home from '../pages/Home'
-import MainLayout from '../layouts/MainLayout'
+import React, { lazy } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import App from "../App";
+import ProductDetails from "../pages/ProductDetails";
+const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
+const Login = lazy(() => import("../pages/Login"));
+const Register = lazy(() => import("../pages/Register"));
+const Home = lazy(() => import("../pages/Home"));
+const MainLayout = lazy(() => import("../layouts/MainLayout"));
 let About = lazy(() => import("../pages/About"));
 let Products = lazy(() => import("../pages/Products"));
-import ProtectedRoute from './ProtectedRoute'
-import PublicRoute from './PublicRoute'
+const ProtectedRoute = lazy(() => import("./ProtectedRoute"));
+const PublicRoute = lazy(() => import("./PublicRoute"));
 
 const AppRoutes = () => {
-
   const router = createBrowserRouter([
     {
-      path:"/",
+      path: "/",
       element: <PublicRoute />,
-      children:[
+      children: [
         {
-          path:"",
-          element:< AuthLayout />,
-          children:[
+          path: "",
+          element: <AuthLayout />,
+          children: [
             {
-          path:"",
-          element: <Login />
+              path: "",
+              element: <Login />,
+            },
+            {
+              path: "register",
+              element: <Register />,
+            },
+          ],
         },
-        {
-          path:"register",
-          element:<Register />
-        }
-          ]
-        }
-        
-      ]
+      ],
     },
     {
-      path:"/",
-      element:<ProtectedRoute />,
-      children:[
+      path: "/",
+      element: <ProtectedRoute />,
+      children: [
         {
-      path:"",
-      element:<MainLayout />,
-      children:[
-        {
-          path:"home",
-          element:<Home />
+          path: "",
+          element: <MainLayout />,
+          children: [
+            {
+              path: "home",
+              element: <Home />,
+            },
+            {
+              path: "products",
+              element: <Products />,
+            },
+            {
+              path:"products/:id",
+              element:<ProductDetails />
+            },
+            {
+              path: "products/category/:category",
+              element: <Products />,
+            },
+            {
+              path: "about",
+              element: <About />,
+            },
+          ],
         },
-        {
-          path:"products",
-          element:<Products />
-        },
-          {
-      path:"products/category/:category",
-      element:<Products />
+      ],
     },
-        {
-          path:"about",
-          element:<About />
-        }
-      ]
-    }]
-    }
-  ])
+  ]);
 
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
 
-export default AppRoutes
+export default AppRoutes;
