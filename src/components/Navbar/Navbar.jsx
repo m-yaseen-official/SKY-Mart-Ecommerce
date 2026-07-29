@@ -4,11 +4,12 @@ import { useContext } from "react";
 import { LuLogOut } from "react-icons/lu";
 import { NavLink } from "react-router";
 import { Auth } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { setIsCartOpen, open, setOpen } = useContext(Auth);
+  const { setIsCartOpen, open, setOpen, setLoggedInUser, loggedInUser } =
+    useContext(Auth);
 
-  const {loggedInUser} = useContext(Auth)
   const fullName = loggedInUser.name;
   return (
     <motion.nav
@@ -35,7 +36,11 @@ const Navbar = () => {
         <ul className="hidden md:flex items-center font-semibold text-gray-500 text-sm gap-10 font-dm">
           <NavLink
             to={"/home"}
-            className={({isActive})=> isActive ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 cursor-pointer transition" } 
+            className={({ isActive }) =>
+              isActive
+                ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400"
+                : "text-gray-500 cursor-pointer transition"
+            }
             end
           >
             Home
@@ -43,14 +48,22 @@ const Navbar = () => {
 
           <NavLink
             to={"/products"}
-            className={({isActive})=> isActive ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 cursor-pointer transition" }
+            className={({ isActive }) =>
+              isActive
+                ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400"
+                : "text-gray-500 cursor-pointer transition"
+            }
           >
             Shop
           </NavLink>
 
           <NavLink
             to={"/about"}
-            className={({isActive})=> isActive ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 cursor-pointer transition" }
+            className={({ isActive }) =>
+              isActive
+                ? "text-lime-400 font-semibold cursor-pointer transition border-b border-lime-400"
+                : "text-gray-500 cursor-pointer transition"
+            }
           >
             About
           </NavLink>
@@ -77,7 +90,14 @@ const Navbar = () => {
             </span>
           </button>
 
-          <button className="relative h-10 w-10 rounded-xl border border-zinc-700 flex justify-center items-center hover:border-lime-400">
+          <button
+            onClick={() => {
+              localStorage.removeItem("LogginUser");
+              toast.warn("User logged out");
+              setLoggedInUser(null);
+            }}
+            className="relative h-10 w-10 rounded-xl border border-zinc-700 flex justify-center items-center hover:border-lime-400"
+          >
             <LuLogOut />
           </button>
         </div>
@@ -86,20 +106,15 @@ const Navbar = () => {
 
         <div className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
           {open ? (
-           
-              <div>
-                <FaTimes />
-              </div>
-              
+            <div>
+              <FaTimes />
+            </div>
           ) : (
-            
-
-              <div>
-                <FaBars />
+            <div>
+              <FaBars />
             </div>
           )}
         </div>
-        
       </div>
 
       {open && (
@@ -109,13 +124,34 @@ const Navbar = () => {
           className="md:hidden bg-[#111]"
         >
           <ul className="flex flex-col p-5 items-center  gap-5">
-            <NavLink to={"/home"} className={({isActive})=> isActive ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 w-full text-center cursor-pointer transition" } >
+            <NavLink
+              to={"/home"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400"
+                  : "text-gray-500 w-full text-center cursor-pointer transition"
+              }
+            >
               Home
             </NavLink>
-            <NavLink to={"/products"} className={({isActive})=> isActive ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 w-full text-center cursor-pointer transition" }>
+            <NavLink
+              to={"/products"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400"
+                  : "text-gray-500 w-full text-center cursor-pointer transition"
+              }
+            >
               Shop
             </NavLink>
-            <NavLink to={"/about"} className={({isActive})=> isActive ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400": "text-gray-500 w-full text-center cursor-pointer transition" }>
+            <NavLink
+              to={"/about"}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-lime-400 w-full text-center font-semibold cursor-pointer transition border-b border-lime-400"
+                  : "text-gray-500 w-full text-center cursor-pointer transition"
+              }
+            >
               About
             </NavLink>
           </ul>
