@@ -6,6 +6,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import { MdOutlineEmail } from "react-icons/md";
 import { useNavigate } from "react-router";
 import { Auth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Register = () => {
 
@@ -43,7 +44,7 @@ const Register = () => {
     // Save new user
     let arr = [...registeredUsers,data];
     setregisterUser(arr);
-    alert("Account Created Successfully");
+    toast.success("Account Created Successfully");
     setLoggedInUser(data)
     localStorage.setItem("loggedInUser",JSON.stringify(data))
     localStorage.setItem("registerUser", JSON.stringify(arr));

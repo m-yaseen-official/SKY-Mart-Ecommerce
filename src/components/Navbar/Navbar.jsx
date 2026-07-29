@@ -93,7 +93,7 @@ const Navbar = () => {
           <button
             onClick={() => {
               localStorage.removeItem("LogginUser");
-              toast.warn("User logged out");
+              toast.success("Logged out see you soon👋");
               setLoggedInUser(null);
             }}
             className="relative h-10 w-10 rounded-xl border border-zinc-700 flex justify-center items-center hover:border-lime-400"
