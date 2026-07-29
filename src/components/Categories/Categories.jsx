@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   FaLaptop,
@@ -9,20 +9,22 @@ import {
   FaGamepad,
   FaArrowRight,
 } from "react-icons/fa";
-import CategoryCard from './CategoryCard';
-import { useNavigate } from 'react-router';
-import { Auth } from '../../context/AuthContext';
-
+import CategoryCard from "./CategoryCard";
+import { useNavigate } from "react-router";
+import { Auth } from "../../context/AuthContext";
+import Loader from "../Loader/Loader";
 
 const Categories = () => {
+  const navigate = useNavigate();
+  const { categories, getCategoriesData, categoriesLoading } = useContext(Auth);
 
-  const navigate = useNavigate();;
-  const {categories, getCategoriesData } = useContext(Auth)
+  useEffect(() => {
+    getCategoriesData();
+  }, []);
 
-  useEffect(()=>{
-getCategoriesData();
-},[])
-
+  if (categoriesLoading) {
+    return <Loader />
+  }
   return (
     <section className="px-5 lg:px-10 py-14">
       {/* Heading */}
@@ -34,12 +36,12 @@ getCategoriesData();
           </h2>
         </div>
 
-        <motion.button onClick={()=> navigate('/products')}
+        <motion.button
+          onClick={() => navigate("/products")}
           whileHover={{ x: 5 }}
           className="flex items-center gap-3 text-lime-400 font-semibold"
         >
           View All
-
           <FaArrowRight />
         </motion.button>
       </div>
@@ -47,12 +49,12 @@ getCategoriesData();
       {/* Cards */}
 
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
-        {categories.slice(0,6).map((item, index) => (
+        {categories.slice(0, 6).map((item, index) => (
           <CategoryCard key={index} categoryItem={item} />
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

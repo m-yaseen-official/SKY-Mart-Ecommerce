@@ -4,20 +4,24 @@ import ProductCard from '../components/Products/ProductCard'
 import { FiSearch } from 'react-icons/fi'
 import { IoChevronDownOutline } from 'react-icons/io5'
 import { useParams } from 'react-router'
+import Loader from '../components/Loader/Loader'
 
 const Products = () => {
-const {products , getProductData, getProductsByCategory} = useContext(Auth);
+const {products , getProductsData, getProductsByCategory, categoryLoading, productsLoading } = useContext(Auth);
 const {category} = useParams()
 
 
 useEffect(()=>{
   if(!category){
-    getProductData();
+    getProductsData();
     return
   }
   getProductsByCategory(category)
 },[category])
 
+if(productsLoading || categoryLoading){
+  return <Loader />
+}
   return (
     <div className='mx-auto w-full max-w-7xl border px-10 flex flex-col gap-7 mt-5'>
   <div className='flex flex-col gap-1'>
@@ -42,7 +46,7 @@ useEffect(()=>{
           {/* Category */}
           <div className="relative">
             <select
-              className="h-11 min-w-[180px] appearance-none rounded-xl border border-neutral-700 bg-[#1A1A1A] px-4 pr-10 text-white focus:border-white focus:outline-none"
+              className="h-11 min-w-45 appearance-none rounded-xl border border-neutral-700 bg-[#1A1A1A] px-4 pr-10 text-white focus:border-white focus:outline-none"
             >
               <option>All Categories</option>
               <option>Electronics</option>
@@ -56,7 +60,7 @@ useEffect(()=>{
           {/* Sort */}
           <div className="relative">
             <select
-              className="h-11 min-w-[180px] appearance-none rounded-xl border border-neutral-700 bg-[#1A1A1A] px-4 pr-10 text-white focus:border-white focus:outline-none"
+              className="h-11 min-w-45 appearance-none rounded-xl border border-neutral-700 bg-[#1A1A1A] px-4 pr-10 text-white focus:border-white focus:outline-none"
             >
               <option>Featured</option>
               <option>Newest</option>

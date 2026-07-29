@@ -13,7 +13,6 @@ const Login = () => {
   const { registeredUsers, setLoggedInUser } = useContext(Auth);
   const [showPassword, setShowPassword] = useState(false);
 
-console.log(registeredUsers);
   const {
     register,
     handleSubmit,
@@ -38,7 +37,7 @@ console.log(registeredUsers);
 
     setLoggedInUser(user);
     localStorage.setItem("loggedInUser", JSON.stringify(user));
-    toast.success("User loggedin");
+    toast.success("User loggedIn successfully!");
     reset();
     navigate("/home");
   };
