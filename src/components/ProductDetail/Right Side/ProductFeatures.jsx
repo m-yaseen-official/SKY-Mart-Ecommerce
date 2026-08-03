@@ -1,56 +1,51 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import {
   FaShippingFast,
   FaShieldAlt,
   FaUndoAlt,
 } from "react-icons/fa";
+import { Auth } from "../../../context/AuthContext";
 
-const ProductFeatures = ({ product }) => {
+const ProductFeatures = () => {
+  
+  const {singleProduct} = useContext(Auth);
+  console.log(singleProduct);
   const features = [
     {
-      icon: <FaShippingFast />,
+      icon: <FaShippingFast size={18}/>,
       title: "Fast Shipping",
-      description: product.shippingInformation,
+      description: singleProduct.shippingInformation,
     },
     {
-      icon: <FaShieldAlt />,
+      icon: <FaShieldAlt size={18} />,
       title: "Warranty",
-      description: product.warrantyInformation,
+      description: singleProduct.warrantyInformation,
     },
     {
-      icon: <FaUndoAlt />,
+      icon: <FaUndoAlt size={18} />,
       title: "Return Policy",
-      description: product.returnPolicy,
+      description: singleProduct.returnPolicy,
     },
   ];
 
-  return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-      {features.map((feature, index) => (
-        <motion.div
-          key={index}
-          whileHover={{
-            y: -5,
-            borderColor: "#A3E635",
-          }}
-          transition={{ duration: 0.25 }}
-          className="rounded-2xl border border-zinc-700 bg-[#111111] p-5"
-        >
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-lime-400/10 text-2xl text-lime-400">
-            {feature.icon}
-          </div>
+  return (    
+          <div className="grid grid-cols-3 gap-4 mt-8">
+            {features.map((features,index)=>{
+              return (
+                <div key={index} className="border border-white/10 rounded-2xl h-20 flex flex-col items-center justify-center p-5 ">
+              <span className="text-[#D9FF00]">{features.icon}</span>
+              <p className="mt-3 font-bold text-zinc-400  text-xs ">{features.title} </p>
+              <small className="text-zinc-600 text-xs font-bold">
+                {features.description}
+              </small>
+            </div>
+              )
+            })
+            }
+</div>
+          
 
-          <h3 className="text-lg font-semibold text-white">
-            {feature.title}
-          </h3>
-
-          <p className="mt-2 text-sm leading-6 text-zinc-400">
-            {feature.description}
-          </p>
-        </motion.div>
-      ))}
-    </div>
   );
 };
 

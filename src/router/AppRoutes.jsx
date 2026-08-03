@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "../App";
 import ProductDetails from "../pages/ProductDetails";
+// import ProductDetail from "../components/ProductDetail/ProductDetailed";
 const AuthLayout = lazy(() => import("../layouts/AuthLayout"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));

@@ -86,7 +86,7 @@ const Navbar = () => {
             <FaShoppingCart />
 
             <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-lime-400 text-black text-xs flex justify-center items-center">
-              4
+              0
             </span>
           </button>
 

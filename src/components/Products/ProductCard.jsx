@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
       </div>
 
       {/* Content */}
-      <div className="space-y-4 p-5">
+      <div className="space-y-4 p-5 h-80 flex flex-col justify-between ">
         {/* Brand */}
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium uppercase tracking-widest text-lime-400">
@@ -63,7 +63,7 @@ const ProductCard = ({ product }) => {
 
         {/* Title */}
         <h2 className="line-clamp-2 text-xl font-bold text-white">
-          {product.title}
+          {product.title} 
         </h2>
 
         {/* Description */}
@@ -71,24 +71,6 @@ const ProductCard = ({ product }) => {
           {product.description}
         </p>
 
-        {/* Stock */}
-        <div className="flex items-center justify-between text-sm">
-          {product.stock > 0 ? (
-            <div className="flex items-center gap-2 text-green-400">
-              <FaCheckCircle />
-              <span>{product.stock} In Stock</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2 text-red-400">
-              <FaTimesCircle />
-              <span>Out of Stock</span>
-            </div>
-          )}
-
-          <span className="text-gray-500">
-            SKU: {product.sku}
-          </span>
-        </div>
 
         {/* Price */}
         <div className="flex items-end gap-3">

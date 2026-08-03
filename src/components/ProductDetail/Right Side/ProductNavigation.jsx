@@ -1,55 +1,39 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useNavigate, useParams } from "react-router";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ProductNavigation = ({
-  hasPrevious,
-  hasNext,
+  showPrevious = false,
   onPrevious,
   onNext,
 }) => {
-
-
   return (
-    <div className="flex flex-col gap-4 pt-4 sm:flex-row">
+    <div className="mt-8">
+      {showPrevious ? (
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button
+            onClick={onPrevious}
+            className="flex-1 h-14 rounded-2xl border border-white/20 bg-[#2A2A2A] hover:bg-[#3A3A3A] duration-300 flex items-center justify-center gap-2 text-white font-medium"
+          >
+            <ChevronLeft size={18} />
+            Previous
+          </button>
 
-      {/* Previous */}
-
-      <motion.button
-        whileHover={hasPrevious ? { x: -3 } : {}}
-        whileTap={hasPrevious ? { scale: 0.97 } : {}}
-        onClick={onPrevious}
-        disabled={!hasPrevious}
-        className={`flex flex-1 items-center justify-center gap-3 rounded-2xl border px-6 py-4 font-semibold transition-all
-        ${
-          hasPrevious
-            ? "border-zinc-700 bg-[#111111] text-white hover:border-lime-400 hover:text-lime-400"
-            : "cursor-not-allowed border-zinc-800 bg-[#111111] text-zinc-600"
-        }`}
-      >
-        <FaArrowLeft />
-        Previous
-      </motion.button>
-
-      {/* Next */}
-
-      <motion.button
-        whileHover={hasNext ? { x: 3 } : {}}
-        whileTap={hasNext ? { scale: 0.97 } : {}}
-        onClick={onNext}
-        disabled={!hasNext}
-        className={`flex flex-1 items-center justify-center gap-3 rounded-2xl border px-6 py-4 font-semibold transition-all
-        ${
-          hasNext
-            ? "border-lime-400 bg-lime-400 text-black hover:bg-lime-300"
-            : "cursor-not-allowed border-zinc-800 bg-[#111111] text-zinc-600"
-        }`}
-      >
-        Next
-        <FaArrowRight />
-      </motion.button>
-
+          <button
+            onClick={onNext}
+            className="flex-1 h-14 rounded-2xl bg-[#D9FF00] text-black font-semibold hover:scale-[1.02] duration-300 flex items-center justify-center gap-2"
+          >
+            Next
+            <ChevronRight size={18} />
+          </button>
+        </div>
+      ) : (
+        <button
+          onClick={onNext}
+          className="w-full h-14 rounded-2xl bg-[#D9FF00] text-black font-semibold hover:scale-[1.02] duration-300 flex items-center justify-center gap-2"
+        >
+          Next
+          <ChevronRight size={18} />
+        </button>
+      )}
     </div>
   );
 };
