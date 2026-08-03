@@ -5,7 +5,6 @@ const ProductGallery = ({ product }) => {
   const [selectedImage, setSelectedImage] = useState(
     product?.thumbnail || product?.images?.[0]
   );
-console.log(product);
   return (
     <motion.div
       initial={{ opacity: 0, x: -25 }}

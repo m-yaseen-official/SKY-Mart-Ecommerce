@@ -54,9 +54,7 @@ const ProductInfo = ({ product }) => {
           ))}
         </div>
 
-        <span className="font-medium text-white">
-          {product.rating}
-        </span>
+        <span className="font-medium text-white">{product.rating}</span>
 
         <span className="text-zinc-500">
           ({product?.reviews?.length} Reviews )
@@ -67,9 +65,7 @@ const ProductInfo = ({ product }) => {
 
       {/* Price */}
       <div className="flex flex-wrap items-center gap-4">
-        <h2 className="text-4xl font-bold text-lime-400">
-          {discountedPrice}
-        </h2>
+        <h2 className="text-4xl font-bold text-lime-400">{discountedPrice}</h2>
 
         <span className="text-xl text-zinc-500 line-through">
           {product.price}
@@ -95,23 +91,10 @@ const ProductInfo = ({ product }) => {
 
       {/* Description */}
       <div>
-        <h3 className="mb-3 text-lg font-semibold text-white">
-          Description
-        </h3>
+        <h3 className="mb-3 text-lg font-semibold text-white">Description</h3>
 
-        <p className="leading-8 text-zinc-400">
-          {product.description}
-        </p>
+        <p className="leading-8 text-zinc-400">{product.description}</p>
       </div>
-
-      {/* Quantity */}
-      <QuantitySelector />
-
-      {/* Buttons */}
-      <ProductActions />
-
-      {/* Features */}
-      <ProductFeatures product={product} />
     </motion.div>
   );
 };

@@ -6,7 +6,6 @@ import { Auth } from "../context/AuthContext";
 const PublicRoute = () => {
 
     const { loggedInUser } = useContext(Auth);
-    console.log("hello");
     if (loggedInUser) {
       return <Navigate to={"/home"} />;
     }

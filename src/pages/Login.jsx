@@ -137,11 +137,13 @@ const Login = () => {
               </button>
             </div>
           {errors.password ? (
-            <p className="text-red-500 mb-5">{errors.passwordord.message}</p>
+            <p className="text-red-500 mb-5">{errors.password.message}</p>
           ) : (
             <div className="mb-5"></div>
           )}
-            <button className=" bg-lime-500 mb-5 w-100 rounded-2xl text-black font-bold font-syne  justify-center p-3 flex items-center gap-2">
+            <button
+            type="submit"
+             className=" bg-lime-500 mb-5 w-100 rounded-2xl text-black font-bold font-syne  justify-center p-3 flex items-center gap-2">
               Sign in <FaArrowRight />
             </button>
             <p className="items-center justify-center font-semibold text-gray-600 flex gap-2">
